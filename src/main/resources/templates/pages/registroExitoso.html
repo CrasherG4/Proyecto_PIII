@@ -11,7 +11,7 @@
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a th:href="@{/}" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Clínica Vitalis</span>
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CheckMax</span>
             </a>
             <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
@@ -32,51 +32,35 @@
         </div>
     </nav>
     <div class="max-w-sm mx-auto">
-        <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Historia clínica registrada.</h2>
+        <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Pedido registrado con éxito</h2>
         <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
             <li>
-                <span>Nombre:</span>
-                <span th:text="${paciente.nombre}"></span>
+                <span>Título:</span>
+                <span th:text="${libro.nombre}"></span>
             </li>
             <li>
-                <span>Apellido:</span>
-                <span th:text="${paciente.apellido}"></span>
+                <span>Autor:</span>
+                <span th:text="${libro.autor}"></span>
             </li>
             <li>
                 <span>Email:</span>
-                <span th:text="${paciente.email}"></span>
+                <span th:text="${libro.email}"></span>
             </li>
             <li>
                 <span>Telefono:</span>
-                <span th:text="${paciente.telefono}"></span>
+                <span th:text="${libro.telefono}"></span>
             </li>
             <li>
-                <span>Fecha de nacimiento:</span>
-                <span th:text="${paciente.fechaNacimiento}"></span>
+                <span>Fecha de Pedido:</span>
+                <span th:text="${fechaActual}"></span>
             </li>
             <li>
-                <span>Género:</span>
-                <span th:text="${paciente.genero}"></span>
+                <span>Fecha de Entrega:</span>
+                <span th:text="${libro.fechaEntrega}"></span>
             </li>
             <li>
                 <span>Domicilio:</span>
-                <span th:text="${paciente.domicilio}"></span>
-            </li>
-            <li>
-                <span>Historial Médico:</span>
-                <span th:text="${paciente.historialM}"></span>
-            </li>
-            <li>
-                <span>Medicamentos Actuales:</span>
-                <span th:text="${paciente.medicamentosA}"></span>
-            </li>
-            <li>
-                <span>Consumo de Drogas:</span>
-                <span th:text="${paciente.consumoD}"></span>
-            </li>
-            <li>
-                <span>Motivo de la consulta:</span>
-                <span th:text="${paciente.motivoC}"></span>
+                <span th:text="${libro.domicilio}"></span>
             </li>
         </ul>
     </div>
