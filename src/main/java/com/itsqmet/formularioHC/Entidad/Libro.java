@@ -1,84 +1,82 @@
 package com.itsqmet.formularioHC.Entidad;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
 public class Libro {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @NotBlank
-    @Size(min = 3, max = 50)
-    private String nombre;
+    @Column(unique = true, nullable = false)
+    private String titulo;
 
-    @NotBlank
-    @Size(min = 3, max = 50)
-    private String autor;
+    private String genero;
+    private Double fechapublicacion;
 
-    @NotBlank
-    @Email(message = "Ingrese el correo en formato válido")
-    private String email;
+    @ManyToOne
+    @JoinColumn(name = "codigo_autor")
+    private Autor autor;
 
-    @Size(min = 10, max = 10)
-    @Pattern(regexp = "\\d{10}")
-    private String telefono;
+   /* @ManyToMany (mappedBy = "productos")
+    private List<Cliente> clientes;*/
 
-    @Size(min = 10, max = 150)
-    private String domicilio;
+    @OneToMany(mappedBy = "libros")
+    private List<Prestamo> prestamos;
 
-    @NotNull
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date fechaEntrega;
-
-    public String getNombre() {
-        return nombre;
+    public Long getId() {
+        return id;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getAutor() {
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public Double getFechapublicacion() {
+        return fechapublicacion;
+    }
+
+    public void setFechapublicacion(Double fechapublicacion) {
+        this.fechapublicacion = fechapublicacion;
+    }
+
+    public Autor getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(Autor autor) {
         this.autor = autor;
     }
 
-    public String getEmail() {
-        return email;
+    public List<Prestamo> getPrestamos() {
+        return prestamos;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getDomicilio() {
-        return domicilio;
-    }
-
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
-    }
-
-    public Date getFechaEntrega() {
-        return fechaEntrega;
-    }
-
-    public void setFechaEntrega(Date fechaEntrega) {
-        this.fechaEntrega = fechaEntrega;
+    public void setPrestamos(List<Prestamo> prestamos) {
+        this.prestamos = prestamos;
     }
 }

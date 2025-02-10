@@ -1,36 +1,80 @@
 package com.itsqmet.formularioHC.Controlador;
 
 import com.itsqmet.formularioHC.Entidad.Libro;
+import com.itsqmet.formularioHC.Servicio.AutorServicio;
+import com.itsqmet.formularioHC.Servicio.LibroServicio;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class LibroControlador {
 
-    @GetMapping("/formulario")
-    public String mostrarFormulario(Model model){
-        Libro libro = new Libro();
+    @Autowired
+    LibroServicio libroServicio;
+
+    @Autowired
+    AutorServicio autorServicio;
+
+    //LEER
+    @GetMapping("/libros")
+    public String mostrarLibros(@RequestParam(name = "buscarLibro", required = false, defaultValue = "") String buscarLibro, Model model){
+        List<Libro> libros = libroServicio.buscarLibroTitulo(buscarLibro);
+        model.addAttribute("buscarLibro", buscarLibro);
+        model.addAttribute("libros", libros);
+        return "/Libro/listaLibros";
+    }
+
+    //CREAR
+    @GetMapping("/formularioLibro")
+    public String formularioLibro(Model model){
+        model.addAttribute("libro", new Libro());
+        model.addAttribute("autores", autorServicio.listarAutores());
+        return "/Libro/formularioLibros";
+    }
+
+    @PostMapping("/guardarLibro")
+    public String crearProducto(Libro libro){
+        libroServicio.guardarLibro(libro);
+        return "redirect:/Libros";
+    }
+
+    //ACTUALIZAR
+    @GetMapping("/editarLibro/{id}")
+    public String editarProducto(@PathVariable Long id, Model model){
+        Optional<Libro> libro = libroServicio.buscarLibro(id);
         model.addAttribute("libro", libro);
-        return "pages/formulario";
+        return "/Libro/formulario";
     }
 
-    @PostMapping("/registrar")
-    public String registrarLibro(@Valid @ModelAttribute Libro libro, BindingResult bindingResult, Model model){
+    //ELIMINAR
+    @GetMapping("/eliminarLibro/{id}")
+    public String eliminarLibro(@PathVariable Long id){
+        libroServicio.eliminarLibro(id);
+        return "redirect:/productos";
+    }
 
-        if(bindingResult.hasErrors()){
-            model.addAttribute("errores", bindingResult.getAllErrors());
-            return "pages/formulario";
-        }else{
-            LocalDate fechaActual = LocalDate.now();
-            model.addAttribute("fechaActual", fechaActual);
-
-            return "pages/registroExitoso";
+    /*
+    @GetMapping("/libros/pdf")
+    public ResponseEntity<byte[]> descargarPdf() throws Exception{
+        String rutaPdf = libroServicio.generarPdf();
+        File pdfFile = new File(rutaPdf);
+        if(!pdfFile.exists()){
+            throw new FileNotFoundException("El archivo pdf no existe");
         }
+        byte[] contenido = Files.readAllBytes(pdfFile.toPath());
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("attachment", "libros.pdf");
+        return new ResponseEntity<>(contenido,headers, HttpStatus.OK);
     }
+     */
 }
