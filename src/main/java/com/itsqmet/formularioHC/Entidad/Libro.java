@@ -20,7 +20,9 @@ public class Libro {
     private String titulo;
 
     private String genero;
-    private Double fechapublicacion;
+
+    
+    private Date fechapublicacion;
 
     @ManyToOne
     @JoinColumn(name = "codigo_autor")
@@ -29,7 +31,7 @@ public class Libro {
    /* @ManyToMany (mappedBy = "productos")
     private List<Cliente> clientes;*/
 
-    @OneToMany(mappedBy = "libros")
+    @OneToMany(mappedBy = "libro", fetch = FetchType.LAZY)
     private List<Prestamo> prestamos;
 
     public Long getId() {
