@@ -9,14 +9,15 @@
 
 </head>
 <body>
+
 <div class="container">
   <h2>Lista de Libros</h2>
 
   <!-- Formulario de búsqueda -->
-  <form th:action="@{libros}" method="get" class="mb-3">
-    <div class="input-group">
-      <input type="text" name="buscarLibro" class="form-control" placeholder="Buscar libross" th:value="${buscarLibro}">
-      <button class="btn btn-primary" type="submit">Buscar</button>
+  <form th:action="@{libros}" method="get" class="max-w-sm mx-auto">
+    <div class="mb-5">
+      <input type="text" name="buscarLibro"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar libross" th:value="${buscarLibro}">
+      <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="submit">Buscar</button>
     </div>
   </form>
 
@@ -37,11 +38,12 @@
       <td th:text="${libro.id}"></td>
       <td th:text="${libro.titulo}"></td>
       <td th:text="${libro.genero}"></td>
-      <td th:text="${libro.publicacion}"></td>
+      <td th:text="${libro.fechapublicacion}"></td>
       <td th:text="${libro.autor.nombre}"></td>
       <td>
         <a th:href="@{/editarLibro/} + ${libro.id}" class="btn btn-actualizar">Actualizar</a>
         <a th:href="@{/eliminarLibro/} + ${libro.id}" class="btn btn-eliminar">Eliminar</a>
+        <!-- <a th:href="@{/libro/} + ${libro.id}">Prestamos</a>-->
       </td>
 
     </tr>

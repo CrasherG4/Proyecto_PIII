@@ -27,7 +27,7 @@ public class Prestamo {
 
     @ManyToOne
     @JoinColumn(name = "id_libro")
-    private Libro libros;
+    private Libro libro;
 
     public Long getId() {
         return id;
@@ -69,11 +69,11 @@ public class Prestamo {
         this.usuario = usuario;
     }
 
-    public Libro getLibros() {
-        return libros;
+    public Libro getLibro() {
+        return libro;
     }
 
-    public void setLibros(Libro libros) {
-        this.libros = libros;
+    public void setLibro(Libro libro) {
+        this.libro = libro;
     }
 }

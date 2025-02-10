@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PrestamoRepositorio extends JpaRepository<Prestamo, Long> {
-    List<Usuario> findByUsuario_Id(Long id_usuario);
+    List<Prestamo> findByUsuario_Id(Long id_usuario);
+    //---xxxxxxxx---------------------------
+    List<Prestamo> findByLibro_Id(Long id_libro);
 }

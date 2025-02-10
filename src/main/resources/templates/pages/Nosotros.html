@@ -7,67 +7,91 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-gray-50 text-gray-900">
 
 <!-- NAVBAR -->
-<nav class="bg-white border-gray-200 shadow-md">
-  <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+<nav class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-screen-xl mx-auto flex items-center justify-between p-4">
     <a th:href="@{/}" class="flex items-center space-x-3">
-      <img src="https://img.freepik.com/vector-premium/vector-logotipo-cine-vector-pelicula-rollo-sobre-fondo-blanco_472355-306.jpg" class="h-8" alt="Logo Biblioteca" />
-      <span class="self-center text-2xl font-semibold">CheckMax</span>
+      <img src="https://img.freepik.com/vector-premium/vector-logotipo-cine-vector-pelicula-rollo-sobre-fondo-blanco_472355-306.jpg" class="h-10" alt="Logo Biblioteca" />
+      <span class="text-2xl font-bold text-blue-700">CheckMax</span>
     </a>
-    <div class="hidden md:flex space-x-6">
-      <a th:href="@{/}" class="text-gray-700 hover:text-blue-600">Inicio</a>
-      <a th:href="@{/nosotros}" class="text-blue-600 font-semibold">Nosotros</a>
+    <div class="hidden md:flex space-x-6 text-lg">
+      <a th:href="@{/}" class="text-blue-700 font-semibold">Inicio</a>
+      <a th:href="@{/nosotros}" class="text-gray-700 hover:text-blue-600">Nosotros</a>
       <a th:href="@{/formularioLibro}" class="text-gray-700 hover:text-blue-600">Libros</a>
+      <a th:href="@{/formularioUsuario}" class="text-gray-700 hover:text-blue-600">Usuarios</a>
+      <a th:href="@{/formularioAutor}" class="text-gray-700 hover:text-blue-600">Autores</a>
+      <a th:href="@{/formularioPrestamo}" class="text-gray-700 hover:text-blue-600">Prestamos</a>
+
     </div>
   </div>
 </nav>
 
 <!-- CARRUSEL -->
 <div id="carousel" class="relative w-full max-w-screen-xl mx-auto mt-6" data-carousel="static">
-  <div class="relative h-56 md:h-80 overflow-hidden rounded-lg">
+  <div class="relative h-64 md:h-96 overflow-hidden rounded-lg">
     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-      <img th:src="@{imagenes/Anosotros1.jpg}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      <img th:src="@{imagenes/Anosotros.jpg}" class="absolute block w-full h-full object-cover" alt="Biblioteca 1">
     </div>
     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-      <img th:src="@{imagenes/Anosotros2.jpg}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      <img th:src="@{imagenes/Anosotros2.jpg}" class="absolute block w-full h-full object-cover" alt="Biblioteca 2">
     </div>
     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-      <img th:src="@{imagenes/Anosotros3.jpg}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      <img th:src="@{imagenes/Anosotros3.jpg}" class="absolute block w-full h-full object-cover" alt="Biblioteca 3">
     </div>
   </div>
-  <button type="button" class="absolute top-1/2 left-0 z-10 px-4 bg-gray-800/50 text-white" data-carousel-prev>&#10094;</button>
-  <button type="button" class="absolute top-1/2 right-0 z-10 px-4 bg-gray-800/50 text-white" data-carousel-next>&#10095;</button>
 </div>
 
 <!-- SECCIÓN SOBRE NOSOTROS -->
-<section class="max-w-screen-lg mx-auto text-center mt-12 p-6">
-  <h2 class="text-3xl font-bold text-blue-600">Quiénes Somos</h2>
+<section class="max-w-screen-lg mx-auto text-center mt-12 p-8 bg-white shadow-lg rounded-lg">
+  <h2 class="text-4xl font-extrabold text-blue-700">Quiénes Somos</h2>
   <p class="text-lg text-gray-700 mt-4">
-    Somos una biblioteca virtual dedicada a proporcionar acceso a una amplia colección de libros digitales, fomentando la lectura y el conocimiento accesible para todos.
+    Somos una biblioteca virtual que promueve el acceso libre y equitativo a la información, ofreciendo una amplia gama de recursos educativos,
+    desde literatura clásica hasta investigaciones científicas y documentos académicos.
   </p>
 </section>
 
 <!-- MISIÓN Y VISIÓN -->
-<section class="max-w-screen-lg mx-auto grid md:grid-cols-2 gap-10 mt-12 p-6">
+<section class="max-w-screen-lg mx-auto grid md:grid-cols-2 gap-10 mt-12 p-8">
   <div class="bg-white p-6 rounded-lg shadow-md">
-    <h3 class="text-2xl font-semibold text-blue-600">Nuestra Misión</h3>
+    <h3 class="text-2xl font-semibold text-blue-700">Nuestra Misión</h3>
     <p class="text-gray-700 mt-2">
-      Ofrecer un espacio digital donde los usuarios puedan acceder a una variedad de libros electrónicos de forma gratuita y sencilla.
+      Proporcionar un entorno digital innovador que facilite el aprendizaje y el acceso a una vasta colección de libros electrónicos y materiales educativos.
     </p>
   </div>
   <div class="bg-white p-6 rounded-lg shadow-md">
-    <h3 class="text-2xl font-semibold text-blue-600">Nuestra Visión</h3>
+    <h3 class="text-2xl font-semibold text-blue-700">Nuestra Visión</h3>
     <p class="text-gray-700 mt-2">
-      Convertirnos en la biblioteca digital líder en habla hispana, facilitando el acceso a la información y promoviendo la cultura de la lectura.
+      Convertirnos en la plataforma de referencia para la educación digital en habla hispana, brindando recursos accesibles y de alta calidad.
     </p>
   </div>
 </section>
 
+<!-- TESTIMONIOS -->
+<section class="max-w-screen-lg mx-auto mt-12 p-8 bg-white shadow-lg rounded-lg">
+  <h3 class="text-3xl font-semibold text-blue-700 text-center">Lo que dicen nuestros usuarios</h3>
+  <div class="mt-6 grid md:grid-cols-2 gap-6">
+    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+      <p class="text-gray-700 italic">"CheckMax ha sido una herramienta invaluable para mis estudios universitarios. Encuentro todos los libros que necesito fácilmente."</p>
+      <span class="block mt-4 text-right font-semibold">- Juan Pérez</span>
+    </div>
+    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+      <p class="text-gray-700 italic">"Acceder a libros de calidad desde cualquier lugar es maravilloso. La colección de CheckMax es increíble."</p>
+      <span class="block mt-4 text-right font-semibold">- María Rodríguez</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="max-w-screen-lg mx-auto text-center mt-12 p-8 bg-white shadow-lg rounded-lg">
+  <h3 class="text-3xl font-semibold text-blue-700">Contáctanos</h3>
+  <p class="text-lg text-gray-700 mt-4">Si tienes preguntas o necesitas ayuda, envíanos un correo a <strong>soporte@checkmax.com</strong> o llámanos al <strong>+34 600 123 456</strong>.</p>
+</section>
+
 <!-- FOOTER -->
-<footer class="bg-gray-800 text-white text-center py-4 mt-12">
-  <p>&copy; 2025 CheckMax. Todos los derechos reservados.</p>
+<footer class="bg-gray-900 text-white text-center py-6 mt-12">
+  <p class="text-lg">&copy; 2025 CheckMax. Todos los derechos reservados.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>

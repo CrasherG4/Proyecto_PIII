@@ -6,8 +6,9 @@
     <title>Biblioteca Virtual | CheckMax</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="bg-gray-100 text-gray-900">
 <!-- NAVBAR -->
 <nav class="bg-white shadow-md sticky top-0 z-50">
     <div class="max-w-screen-xl mx-auto flex items-center justify-between p-4">
@@ -19,41 +20,66 @@
             <a th:href="@{/}" class="text-blue-700 font-semibold">Inicio</a>
             <a th:href="@{/nosotros}" class="text-gray-700 hover:text-blue-600">Nosotros</a>
             <a th:href="@{/formularioLibro}" class="text-gray-700 hover:text-blue-600">Libros</a>
+            <a th:href="@{/formularioUsuario}" class="text-gray-700 hover:text-blue-600">Usuarios</a>
+            <a th:href="@{/formularioAutor}" class="text-gray-700 hover:text-blue-600">Autores</a>
+            <a th:href="@{/formularioPrestamo}" class="text-gray-700 hover:text-blue-600">Prestamos</a>
+
         </div>
     </div>
 </nav>
 
-<!-- HERO SECTION - CAROUSEL -->
-<div id="default-carousel" class="relative w-full" data-carousel="slide">
-    <div class="relative h-64 md:h-96 overflow-hidden rounded-lg">
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img th:src="@{imagenes/Biblioteca1.jpg}" class="absolute w-full h-full object-cover" alt="Biblioteca 1">
-        </div>
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img th:src="@{imagenes/Biblioteca2.jpg}" class="absolute w-full h-full object-cover" alt="Biblioteca 2">
-        </div>
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img th:src="@{imagenes/biblioteca3.jpeg}" class="absolute w-full h-full object-cover" alt="Biblioteca 3">
-        </div>
+<!-- HERO SECTION -->
+<section class="relative w-full h-80 md:h-96 flex items-center justify-center bg-cover bg-center" style="background-image: url('imagenes/biblioteca1.jpg');">
+    <div class="bg-black bg-opacity-50 w-full h-full flex flex-col items-center justify-center text-center text-white p-8">
+        <h1 class="text-5xl font-extrabold">Explora el Conocimiento</h1>
+        <p class="text-lg mt-4">Miles de libros, artículos y recursos disponibles en nuestra biblioteca virtual.</p>
     </div>
-</div>
+</section>
 
-<!-- CONTENIDO PRINCIPAL -->
+<!-- INFORMACIÓN -->
 <main class="max-w-screen-lg mx-auto p-8">
-    <h1 class="text-4xl font-extrabold text-center text-blue-700 mb-6">Bienvenidos a Biblioteca Virtual</h1>
+    <h2 class="text-3xl font-bold text-center text-blue-700 mb-6">Bienvenidos a CheckMax</h2>
     <p class="text-lg text-gray-700 leading-relaxed text-center mb-8">
-        Explora un mundo de conocimiento con nuestra Biblioteca Virtual, donde encontrarás recursos educativos, libros de investigación,
-        literatura y mucho más. Disponible para ti 24/7, facilitando el acceso a información de calidad desde cualquier lugar.
+        Tu biblioteca virtual de confianza, con acceso a una amplia gama de recursos educativos y literatura de calidad.
     </p>
 
-    <h2 class="text-2xl font-bold text-gray-800 mb-4">¿Qué ofrecemos?</h2>
-    <ul class="list-disc pl-6 space-y-2 text-lg text-gray-700">
-        <li>Acceso a nuestra biblioteca virtual las 24 horas, todos los días de la semana.</li>
-        <li>Amplia colección impresa y digital con más de 2,000 libros.</li>
-        <li>Opciones de préstamo, renovación y reserva de materiales.</li>
-        <li>Servicio de entrega de libros físicos a domicilio.</li>
-    </ul>
+    <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white shadow-md rounded-lg p-6 text-center">
+            <h3 class="text-xl font-bold text-blue-700">Acceso 24/7</h3>
+            <p class="text-gray-600 mt-2">Consulta nuestra biblioteca en cualquier momento y lugar.</p>
+        </div>
+        <div class="bg-white shadow-md rounded-lg p-6 text-center">
+            <h3 class="text-xl font-bold text-blue-700">Más de 10,000 Libros</h3>
+            <p class="text-gray-600 mt-2">Encuentra libros en diversas categorías y géneros.</p>
+        </div>
+        <div class="bg-white shadow-md rounded-lg p-6 text-center">
+            <h3 class="text-xl font-bold text-blue-700">Préstamos y Reservas</h3>
+            <p class="text-gray-600 mt-2">Solicita libros físicos y recíbelos en tu domicilio.</p>
+        </div>
+    </div>
 </main>
+
+<!-- TESTIMONIOS -->
+<section class="bg-gray-200 py-12">
+    <div class="max-w-screen-lg mx-auto text-center">
+        <h2 class="text-3xl font-bold text-blue-700 mb-6">Testimonios de Usuarios</h2>
+        <p class="text-lg text-gray-700 mb-8">Lo que dicen nuestros lectores</p>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <p class="text-gray-600 italic">“CheckMax me ha ayudado a encontrar información valiosa para mis estudios. ¡Excelente servicio!”</p>
+                <p class="text-blue-700 font-bold mt-4">- Juan Pérez</p>
+            </div>
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <p class="text-gray-600 italic">“Me encanta la facilidad para buscar y descargar libros, todo está muy organizado.”</p>
+                <p class="text-blue-700 font-bold mt-4">- María González</p>
+            </div>
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <p class="text-gray-600 italic">“Una biblioteca virtual increíble, con una gran variedad de libros y recursos educativos.”</p>
+                <p class="text-blue-700 font-bold mt-4">- Luis Fernández</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- FOOTER -->
 <footer class="bg-gray-800 text-white text-center py-6 mt-12">

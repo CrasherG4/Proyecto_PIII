@@ -1,6 +1,7 @@
 package com.itsqmet.formularioHC.Controlador;
 
 import com.itsqmet.formularioHC.Entidad.Prestamo;
+import com.itsqmet.formularioHC.Servicio.LibroServicio;
 import com.itsqmet.formularioHC.Servicio.PrestamoServicio;
 import com.itsqmet.formularioHC.Servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,15 @@ public class PrestamoControlador {
     @Autowired
     UsuarioServicio usuarioServicio;
 
+    @Autowired
+    LibroServicio libroServicio;
+
     //Leer
     @GetMapping("/prestamo")
     public String mostrarPrestamos(@RequestParam(name = "buscarPrestamo", required = false, defaultValue = "") String buscarPrestamo, Model model) {
-        List<Prestamo> prestamo = prestamoServicio.listarPrestamos();
-        model.addAttribute("prestamo", prestamo);
+        List<Prestamo> prestamos = prestamoServicio.listarPrestamos();
+        model.addAttribute("prestamos", prestamos);
+        model.addAttribute("buscarPrestamo", buscarPrestamo);
         return "/Prestamo/listaPrestamo";
     }
 
@@ -38,6 +43,7 @@ public class PrestamoControlador {
     public String formularioPrestamo(Model model){
         model.addAttribute("prestamo", new Prestamo());
         model.addAttribute("usuarios", usuarioServicio.listarUsuarios());
+        model.addAttribute("libros", libroServicio.listarLibros());
         return "/Prestamo/formularioPrestamo";
     }
 
@@ -52,6 +58,8 @@ public class PrestamoControlador {
     public String editarPrestamo(@PathVariable Long id, Model model){
         Optional<Prestamo> prestamo = prestamoServicio.buscarPrestamo(id);
         model.addAttribute("prestamo", prestamo);
+        model.addAttribute("usuarios", usuarioServicio.listarUsuarios());
+        model.addAttribute("libros", libroServicio.listarLibros());
         return "/Prestamo/formularioPrestamo";
     }
 

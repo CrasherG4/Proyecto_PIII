@@ -6,6 +6,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itsqmet.formularioHC.Entidad.Libro;
 import com.itsqmet.formularioHC.Repositorio.LibroRepositorio;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,4 +83,11 @@ public class LibroServicio {
     public List<Libro> listarLibrosPorIds(List<Long> ids) {
         return libroRepositorio.findAllById(ids);
     }
+    //METODO PARA OBTENER PROVEEDOR CON PRODUCTOS
+    @Transactional
+    public Libro obtenerLibroConPrestamo(Long id) {
+        Libro libro = libroRepositorio.findById(id).orElseThrow();
+        return libro;
+    }
+
 }

@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Prestamos</title>
+    <title>Lista de Préstamos</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
 </head>
 <body>
+
 <div class="container">
-    <h2>Lista de Prestamos</h2>
+    <h2>Lista de Préstamos</h2>
 
     <!-- Formulario de búsqueda -->
-    <form th:action="@{prestamos}" method="get" class="mb-3">
+    <form th:action="@{/prestamos}" method="get" class="mb-3">
         <div class="input-group">
-            <input type="text" name="buscarPrestamo" class="form-control" placeholder="Buscar prestamos" th:value="${buscarPrestamo}">
+            <input type="text" name="buscarPrestamo" class="form-control" placeholder="Buscar préstamos" th:value="${buscarPrestamo}">
             <button class="btn btn-primary" type="submit">Buscar</button>
         </div>
     </form>
@@ -24,34 +24,33 @@
         <thead>
         <tr>
             <th>Código</th>
-            <th>Usuario</th>
             <th>Descripción</th>
             <th>Fecha Préstamo</th>
             <th>Fecha Devolución</th>
             <th>Usuario</th>
+            <th>Libro</th>
             <th>Opciones</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="prestamo: ${prestamos}">
+        <tr th:each="prestamo : ${prestamos}">
             <td th:text="${prestamo.id}"></td>
-            <td th:text="${prestamo.nombre}"></td>
             <td th:text="${prestamo.descripcion}"></td>
-            <td th:text="${prestamo.fechaPrestamo}"></td>
-            <td th:text="${prestamo.fechaDevolucion}"></td>
+            <td th:text="${#dates.format(prestamo.fechaPrestamo, 'yyyy-MM-dd')}"></td>
+            <td th:text="${#dates.format(prestamo.fechaDevolucion, 'yyyy-MM-dd')}"></td>
             <td th:text="${prestamo.usuario.nombre}"></td>
+            <td th:text="${prestamo.libro.titulo}"></td>
             <td>
-                <a th:href="@{/editarPrestamo/} + ${prestamo.id}" class="btn btn-actualizar">Actualizar</a>
-                <a th:href="@{/eliminarPrestamo/} + ${prestamo.id}" class="btn btn-eliminar">Eliminar</a>
+                <a th:href="@{/editarPrestamo/{id}(id=${prestamo.id})}" class="btn btn-actualizar">Actualizar</a>
+                <a th:href="@{/eliminarPrestamo/{id}(id=${prestamo.id})}" class="btn btn-eliminar">Eliminar</a>
             </td>
         </tr>
         </tbody>
-
     </table>
 
     <!-- Botones adicionales -->
     <div class="d-flex justify-content-between">
-        <a th:href="@{/formularioPrestamo}" class="btn btn-guardar">Nuevo Prestamo</a>
+        <a th:href="@{/formularioPrestamo}" class="btn btn-guardar">Nuevo Préstamo</a>
     </div>
 </div>
 
@@ -75,8 +74,8 @@
     }
 
     .container {
-        background: rgba(255, 255, 255, 0.9); /
-        backdrop-filter: blur(5px); /
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(5px);
         border-radius: 15px;
         padding: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

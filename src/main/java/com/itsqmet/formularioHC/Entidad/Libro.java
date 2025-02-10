@@ -21,7 +21,7 @@ public class Libro {
 
     private String genero;
 
-    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechapublicacion;
 
     @ManyToOne
@@ -58,11 +58,11 @@ public class Libro {
         this.genero = genero;
     }
 
-    public Double getFechapublicacion() {
+    public Date getFechapublicacion() {
         return fechapublicacion;
     }
 
-    public void setFechapublicacion(Double fechapublicacion) {
+    public void setFechapublicacion(Date fechapublicacion) {
         this.fechapublicacion = fechapublicacion;
     }
 

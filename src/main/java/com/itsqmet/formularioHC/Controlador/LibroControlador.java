@@ -1,8 +1,10 @@
 package com.itsqmet.formularioHC.Controlador;
 
 import com.itsqmet.formularioHC.Entidad.Libro;
+import com.itsqmet.formularioHC.Entidad.Prestamo;
 import com.itsqmet.formularioHC.Servicio.AutorServicio;
 import com.itsqmet.formularioHC.Servicio.LibroServicio;
+import com.itsqmet.formularioHC.Servicio.PrestamoServicio;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,9 @@ public class LibroControlador {
     @Autowired
     AutorServicio autorServicio;
 
+    @Autowired
+    PrestamoServicio prestamoServicio;
+
     //LEER
     @GetMapping("/libros")
     public String mostrarLibros(@RequestParam(name = "buscarLibro", required = false, defaultValue = "") String buscarLibro, Model model){
@@ -44,7 +49,7 @@ public class LibroControlador {
     @PostMapping("/guardarLibro")
     public String crearProducto(Libro libro){
         libroServicio.guardarLibro(libro);
-        return "redirect:/Libros";
+        return "redirect:/libros";
     }
 
     //ACTUALIZAR
@@ -52,7 +57,8 @@ public class LibroControlador {
     public String editarProducto(@PathVariable Long id, Model model){
         Optional<Libro> libro = libroServicio.buscarLibro(id);
         model.addAttribute("libro", libro);
-        return "/Libro/formulario";
+        model.addAttribute("autores", autorServicio.listarAutores());
+        return "/Libro/formularioLibros";
     }
 
     //ELIMINAR
@@ -77,4 +83,17 @@ public class LibroControlador {
         return new ResponseEntity<>(contenido,headers, HttpStatus.OK);
     }
      */
+    //METODO PARA BUSCAR LOS PRODUCTOS DE UN PROVEEDOR
+    @GetMapping("/libro/{id}")
+    public String obtenerLibrosPorPrestamo(@PathVariable Long id, Model model) {
+        Optional<Prestamo> prestamos = prestamoServicio.buscarPrestamo(id);
+        Libro libro = libroServicio.buscarLibro(id)
+                .orElseThrow(() -> new RuntimeException("Libro no encontrado"));
+        model.addAttribute("libro", libro);
+
+        model.addAttribute("prestamos", prestamos);
+
+        return "Libro/listaLibroPrestamo";
+    }
+
 }
